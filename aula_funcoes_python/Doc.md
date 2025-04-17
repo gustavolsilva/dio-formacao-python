@@ -71,3 +71,5 @@ def exibir_poema(data_extenso, *args, **kwargs):
 
 exibir_poema("Sexta-feira, 11 de abril de 2025","Zen of Python", "Beautiful is better than ugly.", autor="Tim Peters", ano=1999)
 ```
+## Parâmetros especiais
+<p>Por padrão, argumentos podem ser passados para uma função Python por posição quanto explicitamente pelo nome. Para melhor legibilidade e desempenho, faz sentido restriginr a maneira pelo qual argumentos possam ser passados, assim um desenvolvedor precisa apenas olhar para a definição da função para determinar se os itens são passados <b>por posição, por posição e nome, ou por nome.</b></p>
