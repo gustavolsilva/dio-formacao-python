@@ -73,3 +73,53 @@ exibir_poema("Sexta-feira, 11 de abril de 2025","Zen of Python", "Beautiful is b
 ```
 ## Parâmetros especiais
 <p>Por padrão, argumentos podem ser passados para uma função Python por posição quanto explicitamente pelo nome. Para melhor legibilidade e desempenho, faz sentido restriginr a maneira pelo qual argumentos possam ser passados, assim um desenvolvedor precisa apenas olhar para a definição da função para determinar se os itens são passados <b>por posição, por posição e nome, ou por nome.</b></p>
+
+### Positional only
+```
+def criar_carro(modelo, ano, placa, /, marca, motor, combustivel):
+    print(modelo, ano, placa, marca, motor, combustivel)
+
+criar_carro("Palio", 1999, "ABC-1234", marca="Fiat", motor="1.0", combustivel="Gasolina") # válido
+
+criar_carro(modelo="Palio", ano=1999, placa="ABC-1234", marca="Fiat", motor="1.0", combustivel="Gasolina") # inválido
+```
+### Keyword and positional only
+```
+def criar_carro(modelo, ano, placa, /,*, marca, motor, combustivel):
+    print(modelo, ano, placa, marca, motor, combustivel)
+
+criar_carro("Palio", 1999, "ABC-1234", marca="Fiat", motor="1.0", combustivel="Gasolina") # válido
+
+criar_carro(modelo="Palio", ano=1999, placa="ABC-1234", marca="Fiat", motor="1.0", combustivel="Gasolina") # inválido
+
+```
+## Objetos de primeira classe
+<p> Em Python tudo é objeto, dessa forma <b>funções também são objetos</b> o que as tornam objetos de primeira classe. Com isso podemos <b>atribuir funções a variáveis, passá-las como parâmetro para funções, usá-las como valores em estruturas de dados</b> (listas, tuplas, dicionários, etc) e usar como valor de retorno para uma função.(closures)</p>
+
+### Exemplo
+```
+def somar(a, b):
+    return a + b
+
+def exibir_resultado(a, b, funcao):
+    resultado = funcao(a, b)
+    print(f"O resultado da operação {a} + {b} = {resultado}")
+
+exibir_resultado(10, 10 somar) # O resultado da operação 10 + 10 = 20
+```
+## Escopo local e escopo global
+
+<p> Python trabalha com escopo local e escopo global, dentro do bloco da função o escopo é local. Portanto, alterações ali feitas em objetos imutáveis serão perdidas quando o método terminar de ser executado. Para usar usar objetos globais utilizamos a palavra-chave <b>global</b>, que informa ao interpretador que a variável que está sendo manipulada no escopo local é global. Essa <b>NÃO é uma boa prática e deve ser evitada</b></p>
+
+### Exemplo
+```
+salario = 2000
+
+def salario_bonus(bonus):
+    global salario
+    salario += bonus
+    return salario
+
+salario_bonus(500) # 2500
+
+```
